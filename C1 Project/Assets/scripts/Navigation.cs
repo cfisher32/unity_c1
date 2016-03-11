@@ -62,10 +62,11 @@ public class Navigation : MonoBehaviour {
 
 	void Fire()
 	{
-		if(Time.time > lastTimeShot + shotInterval)
+		if(Time.time >= lastTimeShot + shotInterval)
 		{
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
 			bullet.GetComponent<Bullet>().damage = bulletDamage;
+            lastTimeShot = Time.time;
 		}
 	}
 }

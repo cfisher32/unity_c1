@@ -1,49 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
-	public int health = 3;
-	public bool isDead = false;
-	public GameObject explosionPrefab;
+    public int health = 3;
+    public bool isDead = false;
+    public GameObject explosionPrefab;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
 
-	}
+    }
 
-	public void Damage(int damage)
-	{
-		if(!isDead)
-		{
-			health -= damage;
+    // Update is called once per frame
+    void Update()
+    {
 
-			if(health <= 0)
-			{
-				//die
-				Die();
-			}
-			Debug.Log("health is now: " + health.ToString());
-		}
-	}
+    }
+
+    public void Damage(int damage)
+    {
+        if (!isDead)
+        {
+            health -= damage;
+
+            if (health <= 0)
+            {
+                //die
+                Die();
+            }
+            Debug.Log("tower health is now: " + health.ToString());
+        }
+    }
 
 
-	void Die()
-	{
-		Debug.Log("tower dead.");
-		isDead = true;
-		GameObject bullet = (GameObject)Instantiate(explosionPrefab, transform.position, transform.rotation);
-		Destroy(gameObject);
-	}
+    void Die()
+    {
+        Debug.Log("tower dead.");
+        isDead = true;
+        GameObject bullet = (GameObject)Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
 
-	void Respawn()
-	{
-		Debug.Log("tower respawn.");
-		//create new one or repair this one?
-	}
+    void Respawn()
+    {
+        Debug.Log("tower respawn.");
+        //create new one or repair this one?
+    }
 }
