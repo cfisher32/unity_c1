@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Enemy : MonoBehaviour
@@ -7,18 +7,6 @@ public class Enemy : MonoBehaviour
     public int health = 3;
     public bool isDead = false;
     public GameObject explosionPrefab;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void Damage(int damage)
     {
@@ -40,7 +28,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("tower dead.");
         isDead = true;
-        GameObject bullet = (GameObject)Instantiate(explosionPrefab, transform.position, transform.rotation);
+        GameObject tower = (GameObject)Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

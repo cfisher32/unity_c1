@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 	public float speed = 10f;
 	public float lifeTime = 1f;
 	public float bornTime;
+	public GameObject owner;
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +23,18 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision col) 
+	void OnTriggerEnter(Collider col)
+	{
+		if (col.gameObject.tag == "Enemy" && col.gameObject != owner)
 		{
-			if(col.gameObject.tag == "Enemy")
-			{
-				col.gameObject.GetComponent<Enemy>().Damage(damage);
-				Destroy(gameObject);
-			}
+			Debug.Log("collision on: " + col.name);
+			col.gameObject.GetComponent<Enemy>().Damage(damage);
+			Destroy(gameObject);
 		}
+		else if (col.gameObject.tag == "Player")
+		{
+			Debug.Log("hitting player");
+			Destroy(gameObject);
+		}
+	}
 }

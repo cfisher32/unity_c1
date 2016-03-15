@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Navigation : MonoBehaviour {
@@ -66,7 +66,9 @@ public class Navigation : MonoBehaviour {
 		{
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
 			bullet.GetComponent<Bullet>().damage = bulletDamage;
-            lastTimeShot = Time.time;
+			bullet.GetComponent<Bullet>().owner = gameObject;
+
+			lastTimeShot = Time.time;
 		}
 	}
 }
