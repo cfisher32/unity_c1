@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour {
 			col.gameObject.GetComponent<Enemy>().Damage(damage);
 			Destroy(gameObject);
 		}
-		else if (col.gameObject.tag == "Player")
+		else if (col.gameObject.tag == "Player" && col.gameObject != owner)
 		{
 			Debug.Log("hitting player");
 			Destroy(gameObject);
