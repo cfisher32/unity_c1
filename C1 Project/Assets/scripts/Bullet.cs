@@ -7,15 +7,23 @@ public class Bullet : MonoBehaviour {
 	public float lifeTime = 1f;
 	public float bornTime;
 	public GameObject owner;
+	public Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
 		bornTime = Time.time;
+		rb = GetComponent<Rigidbody>();
+	}
+
+	void FixedUpdate()
+	{
+		//rb.AddForce(transform.forward * speed);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(transform.forward * speed * Time.deltaTime);
+		transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+
 
 		if(Time.time >= bornTime + lifeTime)
 		{

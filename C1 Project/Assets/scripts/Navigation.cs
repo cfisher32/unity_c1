@@ -4,6 +4,7 @@ using System.Collections;
 public class Navigation : MonoBehaviour {
 
 	public float speed = 10.0f;
+	public float turnSpeed = 20.0f;
 	public GameObject bulletPrefab;
 	public int bulletDamage = 1;
 	public float shotInterval = 0.5f;
@@ -29,11 +30,13 @@ public class Navigation : MonoBehaviour {
 		}	
 		if(Input.GetKey(KeyCode.D))
 		{
-			transform.Translate(Vector3.right * speed * Time.deltaTime);
+			//transform.Translate(Vector3.right * speed * Time.deltaTime);
+			transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
 		}	
 		else if(Input.GetKey(KeyCode.A))
 		{
-			transform.Translate(-Vector3.right * speed * Time.deltaTime);
+			//transform.Translate(-Vector3.right * speed * Time.deltaTime);
+			transform.Rotate(-Vector3.up * turnSpeed * Time.deltaTime);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Space))
