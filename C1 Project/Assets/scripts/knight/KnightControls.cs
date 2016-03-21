@@ -28,7 +28,8 @@ public class KnightControls : MonoBehaviour {
 	void Update ()
 	{
 		//ControlsFPSNoAnim();  //remove MoveSimple script
-		ControlsFPSAnim();
+		//ControlsFPSAnim();
+		ControlsFPSAnim2();
 	}
 
 	void Fire()
@@ -80,13 +81,8 @@ public class KnightControls : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.W))
 		{
-			//transform.Translate(Vector3.forward * speed * Time.deltaTime);
-			newPos = (Vector3.forward * speed * Time.deltaTime);
-			agent.destination = transform.position;
-
-			//velocity = Vector3.forward * speed * Time.deltaTime;
-			shouldMove = true;
-
+			transform.Translate(Vector3.forward * speed * Time.deltaTime);
+			newPos = Vector3.forward * speed * Time.deltaTime;
 
 			myAnimator.SetBool("move", true);
 			myAnimator.SetFloat("velx", newPos.z);
@@ -94,36 +90,75 @@ public class KnightControls : MonoBehaviour {
 		else if (Input.GetKey(KeyCode.S))
 		{
 			transform.Translate(-Vector3.forward * speed * Time.deltaTime);
-			agent.destination = transform.position;
+			newPos = Vector3.forward * speed * Time.deltaTime;
 
-			//velocity = -Vector3.forward * speed * Time.deltaTime;
-			//shouldMove = true;
+			myAnimator.SetBool("move", true);
+			myAnimator.SetFloat("velx", newPos.z);
 		}
+		else
+		{
+			myAnimator.SetBool("move", false);
+			myAnimator.SetFloat("velx", 0);
+		}
+
 		if (Input.GetKey(KeyCode.D))
 		{
 			//transform.Translate(Vector3.right * speed * Time.deltaTime);
 			transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
-			agent.destination = transform.position;
-
-			//velocity = Vector3.up * turnSpeed * Time.deltaTime;
-			//shouldMove = true;
 		}
 		else if (Input.GetKey(KeyCode.A))
 		{
 			//transform.Translate(-Vector3.right * speed * Time.deltaTime);
 			transform.Rotate(-Vector3.up * turnSpeed * Time.deltaTime);
-			agent.destination = transform.position;
+		}
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Fire();
+		}
+	}
 
-			//velocity = -Vector3.up * turnSpeed * Time.deltaTime;
-			//shouldMove = true;
+	void ControlsFPSAnim2()
+	{
+		Vector3 vDesiredMove = Vector3.zero;
+
+
+
+		if (Input.GetKey(KeyCode.W))
+		{
+			vDesiredMove.z += 1;
+		}
+		if (Input.GetKey(KeyCode.S))
+		{
+			vDesiredMove.z -= 1;
+		}
+
+		if (Input.GetKey(KeyCode.D))
+		{
+			vDesiredMove.x += 1;
+		}
+		if (Input.GetKey(KeyCode.A))
+		{
+			vDesiredMove.x -= 1;
 		}
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			Fire();
 		}
 
-		//myAnimator.SetBool("move", shouldMove);
-		//myAnimator.SetFloat("velx", newPos.x);
-		//myAnimator.SetFloat("vely", newPos.y);
+		if(vDesiredMove != Vector3.zero)
+		{
+			Vector3 vCalMotion = vDesiredMove * speed * Time.deltaTime;
+			transform.Translate(vCalMotion);
+
+			myAnimator.SetBool("move", true);
+			myAnimator.SetFloat("velx", vDesiredMove.z);
+			myAnimator.SetFloat("vely", vDesiredMove.x);
+		}
+		else
+		{
+			myAnimator.SetBool("move", false);
+			myAnimator.SetFloat("velx", 0);
+			myAnimator.SetFloat("vely", 0);
+		}
 	}
 }
