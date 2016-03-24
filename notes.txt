@@ -9,6 +9,8 @@ https://www.youtube.com/watch?v=Xx21y9eJq1U
 what is IK? How is lasers using IK?
 cant run while waving 49:00
 
+cant run right and left (probably need to setup the axis instead
+
 =======
 
 
