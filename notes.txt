@@ -1,3 +1,22 @@
-light probes
+light probes 3:18 = not noticing any differences
 how to center the preivew animation on inspector during the run animation 20:20
 23:45
+
+why change string to hash/int
+
+https://www.youtube.com/watch?v=Xx21y9eJq1U
+
+what is IK? How is lasers using IK?
+cant run while waving 49:00
+
+=======
+
+
+Asad Zaman [11:56 AM] 
+Best thing is to install PyCharm IDE. That lets you set breakpoints and debug in gui.
+
+often you will need to install python packages (if you are getting some library open source). It is good to learn how to install packages.
+
+On windows, in the past I had cygwin installed which comes with unix like interface
+
+and a lot of packages like python etc.
