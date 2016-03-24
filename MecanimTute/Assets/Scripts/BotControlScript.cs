@@ -67,7 +67,7 @@ public class BotControlScript : MonoBehaviour
 		if(Input.GetButton("Fire2"))
 		{
 			// ...set a position to look at with the head, and use Lerp to smooth the look weight from animation to IK (see line 54)
-			anim.SetLookAtPosition(enemy.position);
+			//anim.SetLookAtPosition(enemy.position);
 			lookWeight = Mathf.Lerp(lookWeight,1f,Time.deltaTime*lookSmoother);
 		}
 		// else, return to using animation for the head by lerping back to 0 for look at weight
@@ -166,6 +166,20 @@ public class BotControlScript : MonoBehaviour
 		if(layer2CurrentState.nameHash == waveState)
 		{
 			anim.SetBool("Wave", false);
+		}
+	}
+
+	void OnAnimatorIK(int layerIndex)
+	{
+		if (Input.GetButton("Fire2"))
+		{
+			anim.SetLookAtPosition(enemy.position);
+			lookWeight = Mathf.Lerp(lookWeight, 1f, Time.deltaTime * lookSmoother);
+			anim.SetLookAtWeight(lookWeight);
+		}
+		else {
+			lookWeight = Mathf.Lerp(lookWeight, 0f, Time.deltaTime * lookSmoother);
+			anim.SetLookAtWeight(lookWeight);
 		}
 	}
 }
