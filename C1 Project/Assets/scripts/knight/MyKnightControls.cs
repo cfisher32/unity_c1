@@ -37,6 +37,19 @@ public class MyKnightControls : MonoBehaviour {
 		//agent = GetComponent<NavMeshAgent>();
 	}
 
+	void Update()
+	{
+		if (Input.GetKey(KeyCode.D))
+		{
+			//transform.Translate(Vector3.right * speed * Time.deltaTime);
+			transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
+		}
+		else if (Input.GetKey(KeyCode.A))
+		{
+			//transform.Translate(-Vector3.right * speed * Time.deltaTime);
+			transform.Rotate(-Vector3.up * turnSpeed * Time.deltaTime);
+		}
+	}
 
 	void FixedUpdate()
 	{
