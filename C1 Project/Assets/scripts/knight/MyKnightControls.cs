@@ -3,7 +3,10 @@ using System.Collections;
 
 public class MyKnightControls : MonoBehaviour {
 
-	public float speed = 10.0f;
+	public GameObject swordCol;
+
+    public float incSpeed = 0.5f;
+	public float speed = 0.0f;
 	public float turnSpeed = 200.0f;
 	public GameObject bulletPrefab;
 	public int bulletDamage = 1;
@@ -35,10 +38,20 @@ public class MyKnightControls : MonoBehaviour {
 		anim = transform.GetComponent<Animator>();
 		col = GetComponent<CapsuleCollider>();
 		//agent = GetComponent<NavMeshAgent>();
+
+        ToggleSword(0);
 	}
 
 	void Update()
 	{
+        if (Input.GetKey(KeyCode.W))
+        {
+            speed += incSpeed * Time.deltaTime;
+        }
+        else
+        {
+            speed = 0.0f;
+        }
 		if (Input.GetKey(KeyCode.D))
 		{
 			//transform.Translate(Vector3.right * speed * Time.deltaTime);
@@ -56,7 +69,7 @@ public class MyKnightControls : MonoBehaviour {
 		float h = Input.GetAxis("Horizontal");                // setup h variable as our horizontal input axis
 		float v = Input.GetAxis("Vertical");
 
-		anim.SetFloat("speed", v);
+        anim.SetFloat("speed", speed); //v * 2.217441f); // blend numbers of root motions for velcotiy
 		anim.SetFloat("direction", h);
 
 		anim.speed = animSpeed;
@@ -113,6 +126,18 @@ public class MyKnightControls : MonoBehaviour {
 			bullet.GetComponent<Bullet>().owner = gameObject;
 
 			lastTimeShot = Time.time;
+		}
+	}
+
+	void ToggleSword(int toggle)
+	{
+		if(toggle == 1)
+		{
+			swordCol.SetActive(true);
+		}
+		else
+		{
+            swordCol.SetActive(false);
 		}
 	}
 }
